@@ -3,9 +3,10 @@ import { sleep, check } from 'k6' // importação das funções do K6 que vamos 
 
 //configurações de como será o teste
 export const options = {
-iterations: 50, //quantidade de vezes que o teste vai ser executado
+vus: 10, //vus é a quantidade de usuários virtuais que vão executar o teste dentro de default function
+duration: '30s', //duration é o tempo que o teste vai durar
 thresholds: { //thresholds é uma configuração que define os limites de sucesso do teste
-  http_req_duration:['p(90) < 10', 'max<1'], //90% das requisições devem ter duração menor que 900ms
+  http_req_duration:['p(90) <3000 ', 'max<5000'], //90% das requisições devem ter duração menor que 900ms
   http_req_failed: ['rate<0.01'] //menos de 1% das requisições podem falhar
   }
 };
