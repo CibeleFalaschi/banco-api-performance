@@ -1,5 +1,7 @@
 import http from 'k6/http' // importação do módulo que vamos usar
 import { sleep, check } from 'k6' // importação das funções do K6 que vamos usar
+import {pegarBaseURL} from '../utils/variaveis.js' // importação da função pegarBaseURL do arquivo variaveis.js
+
 const postLogin = JSON.parse (open('../fixtures/postLogin.json')) //importação do arquivo json que contém o payload da requisição
 
 //configurações de como será o teste
@@ -22,7 +24,7 @@ export const options = {
 
 // Este é o TESTE - não pode ter vários (documentação do grafana k6.)
 export default function () {
-    const url = 'http://localhost:3000/login';
+    const url = pegarBaseURL() + '/login';
    
     const payload = JSON.stringify(postLogin); //payload é o corpo da requisição, que vai ser enviado para o endpoint
 
